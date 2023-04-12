@@ -17,28 +17,28 @@ pipeline {
         stage('Install dependencies'){
             steps {
                 script{
-                    sh: 'npm install'
+                    sh 'npm install'
                 }
             }
         }
         stage('Test') {
             steps {
                 script{
-                    sh: 'ng test --no-watch --code-coverage'
+                    sh 'ng test --no-watch --code-coverage'
                 }
             }
         }
         stage('Sonar scanner coverage'){
             steps {
                 script{
-                    sh: 'ng sonar'
+                    sh 'ng sonar'
                 }
             }
         }
         stage('Build') {
             steps {
                 script{
-                    sh: 'ng build --prod'
+                    sh 'ng build --prod'
                 }
             }
         }
