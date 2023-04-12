@@ -1,6 +1,6 @@
 pipeline {
     options {
-        nodejs 'Node.js'
+       nodejs(nodeJSInstallationName: 'Node.js')
     }
 
     agent any
