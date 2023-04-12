@@ -1,9 +1,9 @@
 pipeline {
-    options {
-       nodejs(nodeJSInstallationName: 'Node.js')
-    }
-
     agent any
+
+    tools { 
+        nodejs "nodejs" 
+    }
 
     stages {
         stage('checkout SCM'){
