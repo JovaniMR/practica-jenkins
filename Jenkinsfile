@@ -4,32 +4,26 @@ pipeline {
     tools { 
         nodejs "NodeJS" 
     }
-    
+
     stages {
+        stage('checkout SCM'){
+          git branch: 'master',
+          url: 'https://github.com/JovaniMR/practica-jenkins'
+        }
         stage('Install dependencies'){
-            steps {
-                sh: 'npm install'
-            }
+            sh: 'npm install'
         }
         stage('Test') {
-            steps {
-                sh: 'ng test --no-watch --code-coverage'
-            }
+            sh: 'ng test --no-watch --code-coverage'
         }
         stage('Sonar scanner coverage'){
-            steps {
-                sh: 'ng sonar'
-            }
+            sh: 'ng sonar'
         }
         stage('Build') {
-            steps {
-                sh: 'ng build --prod'
-            }
+            sh: 'ng build --prod'
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying'
-            }
+            echo 'Deploying'
         }
     }
 }
