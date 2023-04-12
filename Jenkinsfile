@@ -2,28 +2,41 @@ pipeline {
     agent any
 
     tools { 
-        nodejs "NodeJS" 
+        nodejs "node" 
     }
 
     stages {
         stage('checkout SCM'){
-          git branch: 'master',
-          url: 'https://github.com/JovaniMR/practica-jenkins'
+            steps {
+                git branch: 'master',
+                url: 'https://github.com/JovaniMR/practica-jenkins'
+            }
         }
         stage('Install dependencies'){
-            sh: 'npm install'
+            steps {
+                sh: 'npm install'
+            }
         }
         stage('Test') {
-            sh: 'ng test --no-watch --code-coverage'
+            steps {
+                sh: 'ng test --no-watch --code-coverage'
+            }
         }
         stage('Sonar scanner coverage'){
-            sh: 'ng sonar'
+            steps {
+                sh: 'ng sonar'
+            }
         }
         stage('Build') {
-            sh: 'ng build --prod'
+            steps {
+                //sh: 'ng build --prod'
+                echo 'buildying'
+            }
         }
         stage('Deploy') {
-            echo 'Deploying'
+            steps {
+                echo 'Deploying'
+            }
         }
     }
 }
