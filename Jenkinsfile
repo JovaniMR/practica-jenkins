@@ -8,34 +8,45 @@ pipeline {
     stages {
         stage('checkout SCM'){
             steps {
-                git branch: 'master',
-                url: 'https://github.com/JovaniMR/practica-jenkins'
+                script{
+                    git branch: 'master',
+                    url: 'https://github.com/JovaniMR/practica-jenkins'
+                }
             }
         }
         stage('Install dependencies'){
             steps {
-                sh: 'npm install'
+                script{
+                    sh: 'npm install'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh: 'ng test --no-watch --code-coverage'
+                script{
+                    sh: 'ng test --no-watch --code-coverage'
+                }
             }
         }
         stage('Sonar scanner coverage'){
             steps {
-                sh: 'ng sonar'
+                script{
+                    sh: 'ng sonar'
+                }
             }
         }
         stage('Build') {
             steps {
-                //sh: 'ng build --prod'
-                echo 'buildying'
+                script{
+                    sh: 'ng build --prod'
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying'
+                script{
+                    echo 'Deploying'
+                }
             }
         }
     }
